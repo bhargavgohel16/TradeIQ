@@ -31,17 +31,17 @@ stock_options = {
 
 def get_stock_data(ticker):
     for i in range(3):  # retry 3 times
-    try:
-        df = yf.download(ticker, period="1y", interval="1d", progress=False, threads=False)
-
-        if isinstance(df.columns, pd.MultiIndex):
-            df.columns = df.columns.get_level_values(0)
-
-        df = df.dropna()
-        return df
-    except:
-        time.sleep(2)
-        return pd.DataFrame()
+        try:
+            df = yf.download(ticker, period="1y", interval="1d", progress=False, threads=False)
+    
+            if isinstance(df.columns, pd.MultiIndex):
+                df.columns = df.columns.get_level_values(0)
+    
+            df = df.dropna()
+            return df
+        except:
+            time.sleep(2)
+            return pd.DataFrame()
 
 #Yahoo + Google for the NEWS
 
